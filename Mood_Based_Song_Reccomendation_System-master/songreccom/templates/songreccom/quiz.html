@@ -1,0 +1,133 @@
+{% extends 'songreccom/main.html' %}
+{% block body %}
+
+<div class="container ">
+    <a href="{% url 'home'%}" class="btn" >Back</a>
+
+<h1>Welcome to Quiz</h1>
+ 
+<div align="right " id="displaytimer"><b>Timer: 0 seconds</b></div>
+ <hr>
+ <br>
+
+ <div>
+     <!-- {% for i  in q%}
+     <table>
+         <tr>
+             <td>{{forloop.counter}}. {{i.question}}</td>
+         </tr>
+         <tr>
+             <td><input type="radio" name="{{i.question}}"  value="{{i.op1}}">{{i.op1}}</td>
+         </tr>
+         <tr>
+             <td><input type="radio" name="{{i.question}}" value="{{i.op2}}">{{i.op2}}</td>
+         </tr>
+         <tr>
+             <td><input type="radio" name="{{i.question}}" value="{{i.op3}}">{{i.op3}}</td>
+         </tr>
+         <tr>
+             <td><input type="radio" name="{{i.question}}" value="{{i.op4}}">{{i.op4}}</td>
+         </tr>
+         <tr>
+             <td><input type="radio" name="{{i.question}}" value="{{i.op5}}">{{i.op5}}</td>
+         </tr>
+     </table>
+     <br>
+     {% endfor %}
+    <input type="submit" onclick="displayRadioValue()" >
+    <div id="result"></div> -->
+
+
+    <form method="POST">
+        {% for i  in q%}
+            {% csrf_token %}
+
+        {{forloop.counter}}. {{i.question}}<br>
+            <input type="radio" name="{{i.question}}"  value="{{i.op1}}">{{i.op1}}<br>
+            <input type="radio" name="{{i.question}}" value="{{i.op2}}">{{i.op2}}<br>
+            <input type="radio" name="{{i.question}}" value="{{i.op3}}">{{i.op3}}<br>
+            <input type="radio" name="{{i.question}}" value="{{i.op4}}">{{i.op4}}<br>
+            <input type="radio" name="{{i.question}}" value="{{i.op5}}">{{i.op5}}
+            <hr>
+        {% endfor %}
+    </form>
+    <!-- if u add submit button inside form u will get error -->
+    <input type="submit" onclick="displayRadioValue()" >
+    <a href="{% url 'result'%}">See the results</a>
+    <div id="result">
+ </div>
+   {% block script %}
+        <script>
+
+            /* function for getting input clicked by user */
+            function displayRadioValue() {
+            var array = [];
+
+                document.getElementById("result").innerHTML= "";
+                var e = document.getElementsByTagName("input");
+                for (var i = 0; i < e.length; i++) 
+                {
+                    if(e[i].type == "radio")
+                    {
+                        if (e[i].checked) 
+                        {
+                            array.push(e[i].value);
+                            console.log(array);
+                            document.getElementById("result").innerHTML+=" <br> Q"+e[i].name + "<br> ans:" +e[i].value+"<br><br>";
+                        }
+                    }
+                }
+
+
+
+                var url = '/songreccom/quiz'
+
+                fetch(url ,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',     
+                        'X-CSRFToken':csrftoken,
+
+                    },
+                    body: JSON.stringify(array),
+                })
+                .then((response) =>{
+                    return response.json();
+                })
+                .then((data)=>{
+                    console.log('data:',array)
+                    location.reload()
+                })
+
+
+
+        
+                                      //  $.ajax({
+                                      
+
+                                      //  url: "{% url 'quiz' %}",
+                                      
+
+                                      //  type: 'POST',
+                                      
+
+                                      //  data: {'array': JSON.stringify(array)},
+                                      
+
+                                      //  success: function(response){
+                                      
+
+                                      //      console.log(response);
+                                      
+
+                                      //  }
+                                      
+
+                                      // });
+            }
+
+
+        </script>
+    {% endblock script %}
+</div>
+{% endblock body %}

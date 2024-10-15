@@ -1,0 +1,62 @@
+{% extends 'songreccom/main.html' %}
+{% block body %}
+{% load static %}
+<div class="header">
+    <div class="container">
+        <nav>
+            <img class="logo" src="{% static 'images/loogo1.png'%}" alt="logo">
+            <ul>    
+                <li><a href="{% url 'home'%}" class="active">Home</a></li>
+                <li><a href="{% url 'quiz'%}">Quiz</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url  'contact' %}">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="row">
+            <div class=" col-2">
+            <h1>Live Your Life With <br>A New Spice!</h1>
+            <p>personalize your playlist with VMOOD and <br> Let the Music Take you Away</p>
+            <a href="{% url 'quiz'%}" class="btn">Explore Now &#8594;</a>
+        </div>
+        <div class="col-2">
+            <img class="front" src="{% static 'images/front2.png'%}" width="1500px">
+        </div>
+        </div>
+    </div>
+</div>
+<div class="objects">
+            <img src="{% static 'images/1.png'%}" alt="">
+            <img src="{% static 'images/2.png'%}" alt="">
+            <img src="{% static 'images/3.png'%}" alt="">
+            <img src="{% static 'images/4.png'%}" alt="">
+            <img src="{% static 'images/7.png'%}" alt="">
+            <img src="{% static 'images/8.png'%}" alt="">
+            <img src="{% static 'images/9.png'%}" alt="">
+            <img src="{% static 'images/12.png'%}" alt="">
+        </div>
+
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,77 @@
+{% extends 'songreccom/main.html' %}
+{% block body %}
+{% load static %}
+<!-- <!DocTYPE html>
+<html>
+
+<head>
+
+<body>
+    <style>
+       
+        h1 {
+            color: Black;
+            font-family: verdana;
+            font-size: 300;
+        }
+
+        p {
+
+            border-width: 5px;
+            border-radius: 15px;
+            padding: 5px;
+            border-color: brown;
+        }
+
+        div {
+            max-width: '50%';
+            border: solid #000;
+            border-width: 2px;
+            border-radius: 15px;
+            padding: 10px;
+            border-color: black;
+
+        }
+
+        body {
+            display:flex; 
+            flex-direction:column; justify-content:center;
+            align-items: center;
+  min-height:100vh;
+        }
+    </style>
+    </head>
+
+    <body>
+        <div>
+            <h1>The result based on your emotions </h1>
+            <p> The emotion is __________.
+            </p>
+            <a href="{% url 'quiz' %}">Edit your response</a>
+        </div>
+
+        <body>
+ -->
+
+    <div class="container">
+        <nav>
+            <img class="logo" src="{% static 'images/loogo1.png'%}" alt="logo">
+            <ul>    
+                <li><a href="{% url 'home'%}" class="active">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url  'contact' %}">Contact</a></li>
+            </ul>
+        </nav>
+       </div>
+ <div class="container " style="text-align:center;">
+            <img style="text-align: center; width: 500px; height: auto;" src="http://kmit.in/emagazine/wp-content/uploads/2018/02/karnataka-results.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h1>You are in {{det_mood}}.</h1>
+        </div>
+</div>
+<br><br><br><br>
+<br><br><br>
+<a href="{% url 'quiz'%}" style="margin-top: 900px; margin-left:700px ;">Edit your response</a>
+
+
+{% endblock body %}
